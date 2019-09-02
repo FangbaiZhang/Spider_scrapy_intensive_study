@@ -77,4 +77,33 @@
 import json
 print('hello world')
 ```
+- 访问网络的两种方法
+    - get 
+        - 利用参数给服务器传递信息
+        - 参数为dict,使用parse编码
+        - 看实例43_4
+    - post
+        - 一般向服务器传递参数使用
+        - post是把信息自动加密处理
+        - 我们如果想使用post信息，需要使用data参数
+        - 使用post,意味着http请求头可能需要更改:
+            - Content-Type: application/x-www.form-urlencode
+            - Content-Length: 数据长度
+            - 简而言之，一旦更改请求方法，注意其它请求头部信息相适应         
+            - 看实例43_5/6
+            - 为了更多的设置请求信息，单纯通过urlopen就不太适用了
+            - 需要使用request.Request类 
+
+- get与post请求的区别：
+    POST请求的参数都在放在formdata中，可以查看有道翻译，翻译一个单词，
+    检查network中headers，里面有formdata，里面有发送请求的相关参数。
+    浏览器地址栏中的网址没有发生变化。
     
+    get请求：请求的参数直接放在url地址之中，
+    请求的参数进行url编码直接放在地址中
+            
+    - POST请求一般用于提交表单，传输大量的数据
+    - 其它请求一般都使用的GET请求
+    - POST不同的请求网址不变，GET不同的请求网址发生变化
+    
+
