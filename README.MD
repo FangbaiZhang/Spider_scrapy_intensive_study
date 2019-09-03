@@ -1,6 +1,7 @@
 # 爬虫深入研究学习
 
-# 1 字符串知识补充
+# 1 爬虫基本概念补充
+## 1.1 字符串知识补充
 - bytes：二进制
     - 互联网上的数据都是以二进制的方式传输的
     - 机器编码都是以Unicode
@@ -44,7 +45,7 @@
     ASCII Unicode UTF-8 之间的关系（简单明了）[https://blog.csdn.net/u011318077/article/details/100086698]
     汉字是两个字节吗？（非也，汉字字节与编码格式有关）[https://blog.csdn.net/u011318077/article/details/88813287]
 
-# 2 HTTP和HTTPS
+## 1.2 HTTP和HTTPS
 - HTTP
     超文本传输协议 
     默认端口号:80
@@ -136,7 +137,7 @@ print('hello world')
         Allow: /$
         Disallow:  /
     
-# 3 爬虫概念
+## 1.3 爬虫概念
 - 爬虫要根据当前的URL地址对应的响应为准
     Chrome或者Firefox里面的network查看，浏览器一个网址请求network会出来很多请求
     elements的内容和URL地址的响应不一样，network中的第一个请求才是当前的URL地址请求
@@ -148,7 +149,8 @@ print('hello world')
         - 部分数据在响应中
         - 全部通过js生成
        
-
+# 2. requests库
+## 2.1 
 
     
     
