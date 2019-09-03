@@ -106,7 +106,50 @@ print('hello world')
     - 其它请求一般都使用的GET请求
     - POST不同的请求网址不变，GET不同的请求网址发生变化
     
+- 搜索引擎及ROBOTS协议
+    - 排名规则：pagerank算法，点击次数，被引用次数
+    - 局限性：
+        通用搜索引擎所返回的网页里90%的内容无用
+        图片，音频，视频多媒体内容通用搜索引擎无能为力
+        不同用户搜索的目的不全相同，但是返回的内容相同
+    - ROBOTS协议：网站自己定义的允许和不允许的一些规则
+    - 告诉搜索引擎哪些网页可以抓取，哪些页面不能抓取
+    - 但是只是网站自己的规定，道德层面的约定，只要能打开相应网页，还是可以爬取
+    - https://www.taobao.com/robots.txt
+        User-agent:  Baiduspider
+        Allow:  /article
+        Allow:  /oshtml
+        Allow:  /ershou
+        Allow: /$
+        Disallow:  /product/
+        Disallow:  /
+        
+        User-Agent:  Googlebot
+        Allow:  /article
+        Allow:  /oshtml
+        Allow:  /product
+        Allow:  /spu
+        Allow:  /dianpu
+        Allow:  /oversea
+        Allow:  /list
+        Allow:  /ershou
+        Allow: /$
+        Disallow:  /
     
+# 3 爬虫概念
+- 爬虫要根据当前的URL地址对应的响应为准
+    Chrome或者Firefox里面的network查看，浏览器一个网址请求network会出来很多请求
+    elements的内容和URL地址的响应不一样，network中的第一个请求才是当前的URL地址请求
+- 浏览器页面上的数据在哪里
+    当前url地址对应的响应中
+    其它的url地址对应的响应中
+        - 比如ajax请求中
+    .js生成的
+        - 部分数据在响应中
+        - 全部通过js生成
+       
+
+
     
     
 
