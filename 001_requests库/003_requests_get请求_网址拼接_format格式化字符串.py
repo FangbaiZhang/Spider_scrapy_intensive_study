@@ -8,7 +8,7 @@ from urllib import parse
 url = "https://www.baidu.com/baidu?wd={}".format("熊猫")
 
 # 传入的请求头信息都需要使用字典格式
-headers = {"User-Agent": "https://www.baidu.com/baidu?tn=monline_3_dg&ie=utf-8&wd=%E7%86%8A%E7%8C%AB"}
+headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:68.0) Gecko/20100101 Firefox/68.0"}
 
 # 使用get请求，传入网址，请求头
 response = requests.get(url=url, headers=headers)
