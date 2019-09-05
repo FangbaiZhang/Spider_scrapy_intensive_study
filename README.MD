@@ -150,8 +150,29 @@ print('hello world')
         - 全部通过js生成
        
 # 2. requests库
-## 2.1 
+## 2.1 response.text 和response.content的区别
+- 1.response.text
+    - 类型：str
+    - 解码类型： 根据HTTP 头部对响应的编码作出有根据的推测，推测的文本编码
+    - 如何修改编码方式：response.encoding=”gbk”
+- 2. response.content
+    - 类型：bytes
+    - 解码类型： 没有指定
+    - 如何修改编码方式：response.content.deocde(“utf-8”)
+- 3.获取网页源码的通用方式：
+    response.content.decode()
+    response.content.decode(“GBK”)
+    解码方式可以根据响应头中找到Content-Type:text/html;charset=utf-8或者网页源码中content="text/html;charset=utf-8’'来决定.
+    response.encoding = "utf-8"
+    response.text
+    以上三种方法从前往后尝试，能够100%的解决所有网页解码的问题
+    所以：更推荐使用**response.content.decode()**的方式获取响应的html页面
 
-    
-    
 
+pycharm中同时注释多行代码快捷键    
+    
+快捷键：
+
+代码选中的条件下，同时按住 Ctrl+/，被选中行被注释；
+
+再次按下Ctrl+/，注释被取消
