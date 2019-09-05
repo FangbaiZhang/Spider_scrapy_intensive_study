@@ -1,6 +1,11 @@
-# requests库，适合人类使用的库
+# requests库，适合人类使用的库 HTTP for Humans
 # urllib中使用，request.urlopen,繁琐，不适合人类使用，
 # urllib不推荐使用，但是可以通过它可以理解网页请求到返回页面内容整个过程原理
+
+# requests 的底层实现其实就是 urllib
+
+# Requests 继承了urllib的所有特性。Requests支持HTTP连接保持和连接池，
+# 支持使用cookie保持会话，支持文件上传，支持自动确定响应内容的编码，支持国际化的 URL 和 POST 数据自动编码。
 
 # 1. 编码解码问题
 # requests请求网页时候会自动url编码，返回页面内容会自动将字节格式解码为字符串格式

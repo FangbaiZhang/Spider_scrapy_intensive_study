@@ -159,7 +159,15 @@ print('hello world')
     - 类型：bytes
     - 解码类型： 没有指定
     - 如何修改编码方式：response.content.deocde(“utf-8”)
-- 3.获取网页源码的通用方式：
+- 3. 区别
+    使用response.text 时，Requests 会基于 HTTP 响应的文本编码自动解码响应内容，大多数 Unicode 字符集都能被无缝地解码。
+    使用response.content 时，返回的是服务器响应数据的原始二进制字节流，可以用来保存图片等二进制文件。
+    requests默认自带的Accept-Encoding导致或者网站默认发送的就是压缩之后的网页
+    但是为什么content.read()没有问题，因为requests，自带解压压缩网页的功能
+    当收到一个响应时，Requests会猜测响应的编码方式，用于在你调用response.text方法时对响应进行解码。
+    Requests首先在HTTP头部检测是否存在指定的编码方式，如果不存在，则会使用chardet.detect来尝试猜测编码方式（存在误差）
+    更推荐使用response.content.deocde()
+- 4.获取网页源码的通用方式：
     response.content.decode()
     response.content.decode(“GBK”)
     解码方式可以根据响应头中找到Content-Type:text/html;charset=utf-8或者网页源码中content="text/html;charset=utf-8’'来决定.
@@ -168,11 +176,25 @@ print('hello world')
     以上三种方法从前往后尝试，能够100%的解决所有网页解码的问题
     所以：更推荐使用**response.content.decode()**的方式获取响应的html页面
 
-
-pycharm中同时注释多行代码快捷键    
+# 3. 使用代理IP和代理UserAgent
+- 准备一堆的ip地址，组成ip池，随机选择一个ip来使用
+- 如何选择随机代理ip,让使用次数最少的ip被用到
+    - {"ip":ip, "times": 0}
+    - 对这个ip列表进行排序，按照使用次数进行排序，[{}, {}, {}],sorted排序方法
+    - 选择使用次数最少的IP，从中在随机选择一个
+- 检查ip的可用性
+    - 可以使用requests添加超时参数timeout=3，判断ip的质量
+    - 也可以使用在线ip质量检测网站
+- 参考TZKT_Study_Note中006案例，西刺代理爬取及使用，使用随机代理UserAgent
     
-快捷键：
-
-代码选中的条件下，同时按住 Ctrl+/，被选中行被注释；
-
-再次按下Ctrl+/，注释被取消
+# 4. cookie和session区别
+- 区别
+    cookie数据存放在客户的浏览器上，session数据放在服务器上。
+    cookie不是很安全，别人可以分析存放在本地的cookie并进行cookie欺骗。
+    session会在一定时间内保存在服务器上。当访问增多，会比较占用你服务器的性能。
+    单个cookie保存的数据不能超过4K，很多浏览器都限制一个站点最多保存20个cookie。
+- urllib和http库使用cookie：
+        from urllib import request, parse
+        from http import cookiejar
+        cookiejar模块可以自动提取已经登录后产生的cookie
+        - 参考Spider_development_study_note中001文件夹中相关案例
