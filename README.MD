@@ -218,10 +218,15 @@ print('hello world')
             response = session.get(url,headers)
         - 再使用session请求登录之后才能访问的网址，session能够自动使用登录成功时保存的cookie，进行请求
     - 参考001文件夹中008案例
-- cookie信息直接登陆
-    获取到cookie后可以直接放在headers字典里面，直接使用
     
+- cookie信息直接登陆有两种方式
+    获取到cookie后可以直接放在headers字典里面，直接使用
+    cookie信息放在get参数的cookies中
+    - 参考001文件夹中009/010案例
+       
 - 不发送post请求，直接本地的cookie信息登陆的情况：
-    cookie信息过期时间很长的网址
+    - cookie信息过期时间很长的网址
+    - cookie信息过期前，我们可以获取我们所需要的数据
+    - 配合一些其它程序使用，其它程序专门获取cookie，当前程序专门用来请求页面
     
     
