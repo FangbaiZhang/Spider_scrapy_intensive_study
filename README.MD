@@ -193,8 +193,35 @@ print('hello world')
     cookie不是很安全，别人可以分析存放在本地的cookie并进行cookie欺骗。
     session会在一定时间内保存在服务器上。当访问增多，会比较占用你服务器的性能。
     单个cookie保存的数据不能超过4K，很多浏览器都限制一个站点最多保存20个cookie。
-- urllib和http库使用cookie：
+
+- 爬虫处理cookie和session
+    带上cookie、session的好处：
+	- 能够请求到登录之后的页面
+    - 带上cookie、session的弊端：
+        一套cookie和session往往和一个用户对应
+        请求太快，请求次数太多，容易被服务器识别为爬虫
+    - 不需要cookie的时候尽量不去使用cookie
+    - 但是为了获取登录之后的页面，我们必须发送带有cookies的请求
+
+- urllib和http库处理cookie：
         from urllib import request, parse
         from http import cookiejar
         cookiejar模块可以自动提取已经登录后产生的cookie
         - 参考Spider_development_study_note中001文件夹中相关案例
+
+- requests库处理cookies 、session请求
+    requests 提供了一个叫做session类，来实现客户端和服务端的会话保持
+    使用方法：
+        - 实例化一个session对象
+            session = requests.session()
+        - 使用session发送请求，登录网址，会自动把cookie保存到session中
+            response = session.get(url,headers)
+        - 再使用session请求登录之后才能访问的网址，session能够自动使用登录成功时保存的cookie，进行请求
+    - 参考001文件夹中008案例
+- cookie信息直接登陆
+    获取到cookie后可以直接放在headers字典里面，直接使用
+    
+- 不发送post请求，直接本地的cookie信息登陆的情况：
+    cookie信息过期时间很长的网址
+    
+    
