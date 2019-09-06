@@ -265,6 +265,9 @@ print('hello world')
     
     4、配合状态码判断是否请求成功
        assert response.status_code == 200
-   
+    
+    5、retrying重试功能
+        
+- 使用技巧参考案例012   
 
   
