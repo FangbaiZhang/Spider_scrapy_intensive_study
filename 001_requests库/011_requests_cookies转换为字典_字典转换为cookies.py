@@ -15,17 +15,20 @@ def login():
     form_data = {'email': '908851835@qq.com', 'password': 'zfb123456zfb'}
     headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.25 Safari/537.36 Core/1.70.3730.400 QQBrowser/10.5.3805.400"}
     # 使用上面的实例session发送post请求，传入上面的参数
-    session.post(url=post_url, headers=headers, data=form_data)
-    # 上面发送一次请求以后，session实例就已经有了cookie
+    response = session.post(url=post_url, headers=headers, data=form_data)
 
-    # 3 直接登录主页，login()要在该函数之前执行一次,直接使用get请求
-    # 如果直接requests.get请求个人主页，由于没有cookie，会自动跳转到登陆页面
-    home_page_url = "http://www.renren.com/574862780/profile"
-    response = session.get(url=home_page_url, headers=headers)
+    print(response.cookies)
+    print("*" * 100)
 
-    # 输出结果就有个人信息
-    print(response.status_code)
-    print(response.content.decode())
+    # 将cookies转换为字典
+    dict = requests.utils.dict_from_cookiejar(response.cookies)
+    print(dict)
+    print("*" * 100)
+
+    # 将字典转换为cookies
+    print(requests.utils.cookiejar_from_dict(dict))
+    print("*" * 100)
+
 
 if __name__ == "__main__":
     login()

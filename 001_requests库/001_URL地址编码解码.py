@@ -9,6 +9,7 @@
 # URL编码后的地址
 # https://www.baidu.com/baidu?wd=%E7%86%8A%E7%8C%AB
 
+import requests
 from urllib import parse
 from urllib import request
 
@@ -26,7 +27,8 @@ data = data.decode('utf-8')
 # URL地址进行解码
 url_org = parse.unquote(url_data) #解码url
 print(url_org)
-#url_org：wd=百度翻译
+print(requests.utils.unquote(url_data))
+print("*" * 100)
 
 
 # URL编码也可以使用以下方式

@@ -229,4 +229,42 @@ print('hello world')
     - cookie信息过期前，我们可以获取我们所需要的数据
     - 配合一些其它程序使用，其它程序专门获取cookie，当前程序专门用来请求页面
     
-# 5.   
+# 5. POST请求地址
+- 在form表单中寻找action对应的url地址
+    - post的数据是input标签中name的值作为键，真正的用户名和密码作为值
+    - post的url地址就是action对应的url地址
+    - 参考001文件中008图片
+
+- 抓包，寻找登陆的url地址
+    - Chrome的network下勾选上preserve log按钮，不会清楚跳转之前的页面
+    - 多次尝试输入用户名和错误的密码，寻找请求的规律
+        - 寻找post数据，确定参数
+            - 参数不变直接使用，比如密码不是动态加密
+            - 参数会变  - 参数在当前的响应中，通过js生成
+    
+- 定位想要的js
+    - 选择会触发js时间的按钮，点击event listener，找到js的位置
+    - 通过Chrome中检查元素，最右侧的search all file寻找url中的关键字
+    - 添加断点的方式来查看js的操作
+    
+# 6. requests使用小技巧
+- 010案例中我们使用的字典生成式转换原始cookies
+- 实际可以直接使用cookies转换工具
+- 参考案例011
+
+- requests使用小技巧
+    1、requests.utils.dict_from_cookiejar(cookies)  把cookie对象转化为字典
+        cookies转换为字典后，就可以加入到get的参数中使用
+        1.1. requests.get(url,cookies={})
+    
+    2、请求SSL证书验证，添加一个参数，跳过证书验证
+       response = requests.get("https://www.12306.cn/mormhweb/ ", verify=False)
+    
+    3、设置超时,有些网址网速不好，设置一个超时参数，超过了就直接结束请求
+       response = requests.get(url,timeout=3)
+    
+    4、配合状态码判断是否请求成功
+       assert response.status_code == 200
+   
+
+  
