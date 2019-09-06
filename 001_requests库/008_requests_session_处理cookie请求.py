@@ -23,7 +23,7 @@ def login():
     home_page_url = "http://www.renren.com/574862780/profile"
     response = session.get(url=home_page_url, headers=headers)
 
-    # 此时
+    # 输出结果就有个人信息
     print(response.status_code)
     print(response.content.decode())
 
