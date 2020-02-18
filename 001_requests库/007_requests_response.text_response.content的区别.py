@@ -17,6 +17,7 @@ print(response.status_code)
 response.encoding = "utf-8"
 print(type(response.text))
 
+
 # - 类型：bytes
 # - 解码类型： 没有指定,默认utf-8
 # - 如何修改编码方式：response.content.decode(“utf-8”)
@@ -31,4 +32,4 @@ print(type(response.content.decode()))
 # 但是为什么content.read()没有问题，因为requests，自带解压压缩网页的功能
 # 当收到一个响应时，Requests会猜测响应的编码方式，用于在你调用response.text方法时对响应进行解码。
 # Requests首先在HTTP头部检测是否存在指定的编码方式，如果不存在，则会使用chardet.detect来尝试猜测编码方式（存在误差）
-# 更推荐使用response.content.deocde()
+# 更推荐使用response.content.decode()
